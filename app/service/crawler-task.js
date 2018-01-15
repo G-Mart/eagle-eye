@@ -39,7 +39,7 @@ class CrawlerTask extends BaseService {
 
       console.log(`length: ${resDataList.length} | currentPage: ${minItem.page} | userName: ${minItem.userName} | minTradeLimit: ${minItem.minTradeLimit} | basePrcie: ${USDTBasePrice} | price: ${minItem.price} | percent: ${(minItem.price - USDTBasePrice) / USDTBasePrice}`);
 
-      if ((minItem.price - USDTBasePrice) / USDTBasePrice < 0.15 && minItem.price < 7) {
+      if ((minItem.price - USDTBasePrice) / USDTBasePrice <= 0.15 || minItem.price <= 7) {
         const paramsA = `\n currentPage: ${minItem.page} \n userName: ${minItem.userName} \n basePrcie: ${USDTBasePrice} \n`; 
         const paramsB = `\n minTradeLimit: ${minItem.minTradeLimit} \n price: ${minItem.price} \n percent: ${(minItem.price - USDTBasePrice) / USDTBasePrice} \n`;
         this.ctx.service.msg.msg.sendMsg(paramsA, paramsB);
